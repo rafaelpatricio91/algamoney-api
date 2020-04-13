@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,7 +29,7 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler	{
 	private MessageSource source; //Para acessar o messages.properties
 	
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
+			  HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
 		String mensagemUsuario = source.getMessage("mensagem.invalida", null, LocaleContextHolder.getLocale() );
 		String mensagemDev = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
@@ -52,6 +54,16 @@ public class AlgamoneyExceptionHandler extends ResponseEntityExceptionHandler	{
 		
 		List<Erro> erros = criarListaErros(ex.getBindingResult() );
 		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
+	}
+	
+	@ExceptionHandler({ DataIntegrityViolationException.class })
+	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest req) {
+
+		String mensagemUsuario = source.getMessage("recurso.operacao.nao.permitida", null, LocaleContextHolder.getLocale() );
+		String mensagemDev = ExceptionUtils.getRootCauseMessage(ex);
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario,mensagemDev));
+		
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, req);
 	}
 	
 	

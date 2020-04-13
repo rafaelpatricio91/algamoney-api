@@ -1,0 +1,59 @@
+Fullstack Spring Boot – Angular
+
+Anotações
+
+@RestController – identifica que a classe é um controlador Rest
+@RequestMapping(“/recursos”) - mapeia e identifica como será identificado e chamado este recurso na url
+
+extends JpaRepository<Categoria, Long>
+
+@GetMapping – vai no método e indica que ele fará uma ação HTTP Get
+
+
+ResponseEntity: Entidade de resposta. Permite enviar mensagens HTTP de acordo com a situação. Ex: ok, not found, bad request…
+
+@PostMapping: anotação no método que informa que ele chamará a ação POST no http.
+
+@RequestBody: Anotação na entidade que está sendo passada como parâmetro e que está vindo do post. Ex: salvando uma entidade pessoa via postman. @RequestBody Pessoa pessoa como argumento no método salvar.
+
+@ResponseStatus(HttpStatus.CREATED) – informa qual a resposta aquele método retornará ao ser executado.
+
+return ResponseEntity.created(uri).body(categoriaSalva); - Substitui o @ResponseStatus, pois no retorno do método já diz qual é a mensagem.
+
+@PathVariable: valor que vai variar. Anota o parâmetro da busca por código.
+
+ExceptionHandler extendendo ResponseEntityHandler: vai tratar exceção de respostas de entidade. Ex: atributos passados inválidos. Vai tratar a resposta para o usuário. Possui métodos para tratar vários tipos de exceção.
+
+@ControllerAdvice: monitora e observa toda a aplicação.
+
+MessageSource: permite acessar o messages.properties e dar get nas mensagens.
+
+@Valid: indica que aquela classe será validada peloas anotações feitas no model da classe pelo bean validation. Passa automaticamente um 400 Bad Request em caso de envio de informação inválida.
+
+HandleMethodArgumentNotValid: método dentro do ExceptionHandler que trata valores passados inválidos, como nulo em um not null, etc.
+
+BindingResult: Permite acesso aos erros da requisição através do getFieldErrors.
+
+ApplicationEvent: classe para ser extendida. Permite criar eventos para serem disparados quando necessários. Ex. Evento para adicionar o Location quando o recurso for criado.
+
+ApplicationListener: interface que é implementada para construir o listener que vai consumir algum evento (ApplicationEvent). Ele vai ouvir o evento.
+
+ApplicationEventPublisher: injetado para publicar um evento através do listener.
+
+@ExceptionHandler: permite informar um array de exceptions a um método, indicando que ele que irá tratar quando aquela exceção ocorrer.
+
+Repository extends RepositoryQuery
+RepositoryImpl extends RepositoryQuery
+Impl é classe, restante é interface
+
+@PersistenceContext
+private EntityManager manager;
+//Necessário dentro do Impl
+
+Aula que ensina passar token no Postman: 6.3
+Com refresh token: 6.6
+
+ResponseBodyAdvice<tipoDeDado> i: intercepta a resposta http antes de ser enviada
+Usada para interceptar e colocar o refresh token dentro do cookie. Assim o js não tem acesso ao RT
+
+
