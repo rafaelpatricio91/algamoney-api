@@ -56,4 +56,10 @@ Com refresh token: 6.6
 ResponseBodyAdvice<tipoDeDado> i: intercepta a resposta http antes de ser enviada
 Usada para interceptar e colocar o refresh token dentro do cookie. Assim o js não tem acesso ao RT
 
+Exemplo de @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name="usuario_permissao", joinColumns=
+	@JoinColumn(name="codigo_usuario "), inverseJoinColumns=@JoinColumn(name="codigo_permissao") )
+	private List<Permissao> listaPermissoes; 
+
 
