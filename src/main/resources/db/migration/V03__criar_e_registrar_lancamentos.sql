@@ -27,7 +27,7 @@ values ('Extra', '2017-03-10', '2017-03-10', 1010.32, null, 'RECEITA', 4, 6);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) 
 values ('Bahamas', '2017-06-10', null, 500, null, 'RECEITA', 1, 6);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) 
-values ('Top Club', '2017-03-10', '2017-03-10', 400.32, null, 'DESPESA', 4, 7);
+values ('Top Club', '2017-03-10', '2017-03-10', 400.32, null, 'DESPESA', 4, 5);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) 
 values ('Despachante', '2017-06-10', null, 123.64, 'Multas', 'DESPESA', 3, 5);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) 
