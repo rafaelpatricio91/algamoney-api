@@ -7,3 +7,4 @@ CREATE TABLE categoria
 INSERT INTO categoria(nome) VALUES('Farmácia');
 INSERT INTO categoria(nome) VALUES('Supermercado');
 INSERT INTO categoria(nome) VALUES('Hortifruti');
+INSERT INTO categoria(nome) VALUES('Shows');

@@ -31,7 +31,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		
 		auth.userDetailsService(uds).passwordEncoder(passwordEncoder() );
 	}	
-	
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
