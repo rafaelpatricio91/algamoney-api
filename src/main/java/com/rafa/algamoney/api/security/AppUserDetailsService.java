@@ -30,7 +30,8 @@ public class AppUserDetailsService implements UserDetailsService {
 		Optional<Usuario> usuarioOptional = usuarios.findByEmail(email);
 		//Pega os valores do obj. Se n existir, lança exceção 
 		Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos.") );
-		return new User(email, usuario.getSenha(), getPermissoes(usuario) );
+//		return new User(email, usuario.getSenha(), getPermissoes(usuario) );
+		return new UsuarioSistema(usuario, getPermissoes(usuario) );
 	}
 
 	private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
